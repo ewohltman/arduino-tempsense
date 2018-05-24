@@ -18,16 +18,16 @@ void webServer(float tempF);
 float sampleSensorVoltage(int numSamples);
 
 void webServer (float tempF) {
-	EthernetClient client = server.available();
+    EthernetClient client = server.available();
 
-	if (client) {
-	    boolean currentLineIsBlank = true; // An HTTP request ends with a blank line
+    if (client) {
+        boolean currentLineIsBlank = true; // An HTTP request ends with a blank line
 
-	    while (client.connected()) {
-	    	if (client.available()) {
-	    		char c = client.read();
+        while (client.connected()) {
+            if (client.available()) {
+                char c = client.read();
 
-	            // If you've gotten a newline character and the line is blank,
+                // If you've gotten a newline character and the line is blank,
                 // then the HTTP request has completed and we can craft a
                 // response
                 if (c == '\n' && currentLineIsBlank) {
@@ -74,15 +74,15 @@ void webServer (float tempF) {
                     // We just read in a non-newline so there is more to come on this line
                     currentLineIsBlank = false;
                 }
-	        }
-	    }
+            }
+        }
 
         // Give the client time to receive the response
         delay(1);
 
         // Close the connection
         client.stop();
-	}
+    }
 }
 
 float sampleSensorVoltage(int numSamples) {
@@ -110,7 +110,7 @@ void setup() {
     lcd.begin(16, 2);
 
     Ethernet.begin(mac, ip);
-	server.begin();
+    server.begin();
 }
 
 void loop() {
@@ -134,7 +134,7 @@ void loop() {
         lcd.setCursor(0, 0);
         lcd.print("Temperature:");
         lcd.setCursor(0, 1);
-	    lcd.print(String(currentTemp) + " F");
+        lcd.print(String(currentTemp) + " F");
 
         if (currentTemp >= 74.0) {
             digitalWrite(pinRedLED, HIGH);
@@ -149,3 +149,4 @@ void loop() {
 
     delay(100);
 }
+
