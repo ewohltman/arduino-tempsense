@@ -96,7 +96,7 @@ float sampleSensorVoltage(int numSamples) {
     float tempSensorVoltage = (sampleVal / 1024.0) * 5.0;
 
     return tempSensorVoltage;
-}
+} 
 
 void setup() {
     pinMode(pinRedLED, OUTPUT);
